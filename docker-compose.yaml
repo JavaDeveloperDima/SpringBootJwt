@@ -1,0 +1,32 @@
+version: "3.8"
+
+services:
+  api:
+    container_name: test_api
+    build:
+      context: .
+    command: java -jar /app.jar
+    ports:
+      - '1997:1997'
+    depends_on:
+      - test_db
+    restart: on-failure
+
+
+  test_db:
+    container_name: test_db
+    image: mysql:8.0
+    environment:
+      MYSQL_DATABASE: 'test_task'
+      MYSQL_USER: 'test'
+      MYSQL_PASSWORD: 'test'
+      MYSQL_ROOT_PASSWORD: 'test'
+    ports:
+      - '4306:3306'
+    volumes:
+      - my-db:/var/lib/mysql
+      - /data.sql:/docker-entrypoint-initdb.d/data.sql
+    restart: on-failure
+
+volumes:
+  my-db:
