@@ -25,7 +25,7 @@ services:
       - '4306:3306'
     volumes:
       - my-db:/var/lib/mysql
-      - /data.sql:/docker-entrypoint-initdb.d/data.sql
+      - /data.sql:/docker-entrypoint-initdb.d
     restart: on-failure
 
 volumes:
