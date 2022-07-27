@@ -6,21 +6,17 @@ import com.example.springrestjwt.model.User;
 import com.example.springrestjwt.repositories.MessageRepository;
 import com.example.springrestjwt.service.Abstract.MessageService;
 import com.example.springrestjwt.service.Abstract.UserService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class MessageServiceImpl implements MessageService {
     private final MessageRepository messageRepository;
     private final UserService userService;
-
-    @Autowired
-    public MessageServiceImpl(MessageRepository messageRepository,UserService userService) {
-        this.messageRepository = messageRepository;
-        this.userService = userService;
-    }
 
     @Override
     public Message saveMassage(Message message) {
@@ -36,7 +32,7 @@ public class MessageServiceImpl implements MessageService {
     public Message convert(MessageDTO messageDTO) {
         User user = userService.findByName(messageDTO.getUsername());
         Message message = new Message();
-        message.setMassage(messageDTO.getMessage());
+        message.setMessage(messageDTO.getMessage());
         message.setUser(user);
         return message;
     }

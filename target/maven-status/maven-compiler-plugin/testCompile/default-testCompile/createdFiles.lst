@@ -1,1 +1,4 @@
+com/example/springrestjwt/servise/integration/UserServiceImplIT.class
+com/example/springrestjwt/service/UserServiceImplTest.class
+com/example/springrestjwt/service/MessageServiceImplTest.class
 com/example/springrestjwt/SpringRestJwtApplicationTests.class

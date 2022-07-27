@@ -3,6 +3,7 @@ package com.example.springrestjwt.model;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -14,12 +15,11 @@ import java.util.Collection;
 @Table(name = "user")
 @Data
 @NoArgsConstructor
+@RequiredArgsConstructor
 public class User implements UserDetails {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-
     @Size(min = 2, max = 50, message = "Введите имя длинной от 2 до 50 символов")
     @Column(name = "name",unique = true,nullable = false)
     private String username;
@@ -29,12 +29,6 @@ public class User implements UserDetails {
 
     @Column(name = "password")
     private String password;
-
-    public User(String username, String email, String password) {
-        this.username = username;
-        this.email = email;
-        this.password = password;
-    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
